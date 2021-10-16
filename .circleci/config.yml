@@ -123,4 +123,6 @@ workflows:
             requires: [build]
       - create-ec2-instance:
             requires: [start-container]
+      - create-cluster:
+            requires: [create-ec2-instance]
   
