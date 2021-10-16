@@ -56,7 +56,7 @@ jobs:
             docker pull $USERNAME/capstone
             docker run -itd -p 8000:80 $USERNAME/capstone
             docker container ls
-            curl localhost:8000
+            curl 0.0.0.0:8000
 
 workflows:
   default:
