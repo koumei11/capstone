@@ -55,6 +55,7 @@ jobs:
             docker login -u $USERNAME -p $PASSWD
             docker pull $USERNAME/capstone
             docker run -itd -p 8000:80 $USERNAME/capstone
+            docker container ls
             curl localhost:8000
 
 workflows:
