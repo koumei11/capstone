@@ -18,6 +18,9 @@ jobs:
           . venv/bin/activate
           make lint
           
+    - setup_remote_docker:
+        version: 19.03.13
+          
     - run:
         name: build a Dockerfile
         command: |
@@ -39,6 +42,8 @@ jobs:
     - run:
         name: run docker container
         command: |
+            python3 -m venv venv
+            . venv/bin/activate
             docker login -p $PASSWD -u $USERNAME
             docker pull $USERNAME/capstone
             docker run -itd -p 8000:80 $USERNAME/capstone
