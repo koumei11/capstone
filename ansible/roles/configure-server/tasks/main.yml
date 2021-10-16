@@ -8,13 +8,13 @@
 - name: Copy to remote
   become: true
   copy:
-    src: /root/project
+    src: /root/project/conf
     dest: /home/ubuntu
     
 - name: Install docker
   become: true
   shell: |
-      cd /home/ubuntu
+      cd /home/ubuntu/conf
       pwd
       ls
       ./install_docker.sh
