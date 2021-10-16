@@ -112,7 +112,7 @@ jobs:
             apk add --update ansible
             cat ./inventory.txt
       - run:
-          ansible-playbook -i ./inventory.txt ./ansible/configure-server.yml
+          ansible-playbook -i inventory.txt ./ansible/configure-server.yml
           
       - destroy-environment
     
