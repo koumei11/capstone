@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: python:3.7.3-stretch
+      - image: cimg/python:3.10.0
         auth:
             username: $USERNAME
             password: $PASSWD
