@@ -39,9 +39,8 @@
     
 - name: create cluster
   shell: |
-    docker system prune
-    minikube delete
-    minikube start --driver=docker
+    docker login -u {{ USERNAME }} -p {{ PASSWD }}
+    minikube start
     
 - name: deploy pod
   become: true
