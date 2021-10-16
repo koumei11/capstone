@@ -17,5 +17,6 @@
       cd /home/ubuntu/conf
       pwd
       ls
+      chmod +x install_docker.sh
       ./install_docker.sh
       
