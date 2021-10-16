@@ -40,12 +40,10 @@
 - name: create cluster
   become: true
   shell: |
-    docker login -u {{ USERNAME }} -p {{ PASSWD }}
     minikube start
     
 - name: deploy pod
   become: true
   shell: |
-    docker login -u {{ USERNAME }} -p {{ PASSWD }}
     chmod +x run_kubernetes.sh
     ./run_kubernetes.sh
