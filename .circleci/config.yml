@@ -63,7 +63,7 @@ jobs:
             
   create-ec2-instance:
     docker:
-      - cimg/base:2021.07
+      - image: cimg/base:2021.07
     steps:
       - checkout
       - aws-cli/setup
