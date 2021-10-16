@@ -58,6 +58,7 @@ jobs:
 workflows:
     default:
         jobs:
-            - build:
-                requires: [start-container]
+            - build:        
+                requires:
+                    - start-container
   
