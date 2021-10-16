@@ -120,6 +120,7 @@ jobs:
               --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --output text >> ./inventory.txt
             ansible-playbook -i inventory.txt ./ansible/configure-server.yml
+            cat inventory.txt
           
       - destroy-environment
     
