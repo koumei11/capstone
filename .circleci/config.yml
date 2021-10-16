@@ -1,55 +1,58 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: cimg/python:3.10.0
-        auth:
-            username: $USERNAME
-            password: $PASSWD
-
-    steps:
-    - checkout
-    - run:
-        name: install dependencies
-        command: |
-          python3 -m venv venv
-          . venv/bin/activate
-          make install
-    - run:
-        name: run lint
-        command: |
-          . venv/bin/activate
-          make lint
-          
-    - setup_remote_docker:
-        version: 19.03.13
-          
-    - run:
-        name: build a Dockerfile
-        command: |
-            docker build --tag=capstone .
-            docker images
-    - run:
-        name: push a docker image
-        command: |
-            docker login -u $USERNAME -p $PASSWD
-            docker tag capstone $USERNAME/capstone
-            docker push $USERNAME/capstone
+    build:
+        docker:
+          - image: cimg/python:3.10.0
+            auth:
+                username: $USERNAME
+                password: $PASSWD
+        
+        steps:
+        - checkout
+        - run:
+            name: install dependencies
+            command: |
+              python3 -m venv venv
+              . venv/bin/activate
+              make install
+        - run:
+            name: run lint
+            command: |
+              . venv/bin/activate
+              make lint
+              
+        - setup_remote_docker:
+            version: 19.03.13
+              
+        - run:
+            name: build a Dockerfile
+            command: |
+                docker build --tag=capstone .
+                docker images
+        - run:
+            name: push a docker image
+            command: |
+                docker login -u $USERNAME -p $PASSWD
+                docker tag capstone $USERNAME/capstone
+                docker push $USERNAME/capstone
             
-  run_container:
-    docker:
-        - image: python:3.7.3-stretch
-    
-    steps:
-    - checkout
-    - run:
-        name: run docker container
-        command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            docker login -p $PASSWD -u $USERNAME
-            docker pull $USERNAME/capstone
-            docker run -itd -p 8000:80 $USERNAME/capstone
-            curl localhost:8000
-  
+    startcontainer:
+        docker:
+            - image: cimg/python:3.10.0
+              auth:
+                username: $USERNAME
+                password: $PASSWD
+        
+        steps:
+        - checkout
+        - run:
+            name: run docker container
+            command: |
+                python3 -m venv venv
+                . venv/bin/activate
+                docker login -p $PASSWD -u $USERNAME
+                docker pull $USERNAME/capstone
+                docker run -itd -p 8000:80 $USERNAME/capstone
+                curl localhost:8000
+
   
