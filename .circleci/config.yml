@@ -103,7 +103,6 @@ jobs:
     
     steps:
       - checkout
-      - aws-cli/setup
       - run:
           name: Install dependencies
           command: |
