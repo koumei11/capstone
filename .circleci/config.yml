@@ -1,0 +1,48 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: python:3.7.3-stretch
+
+    steps:
+    - checkout
+    - run:
+        name: install dependencies
+        command: |
+          python3 -m venv venv
+          . venv/bin/activate
+          make install
+          chmod +x /bin/hadolint
+    - run:
+        name: run lint
+        command: |
+          . venv/bin/activate
+          make lint
+          
+    - run:
+        name: build a Dockerfile
+        command: |
+            docker build --tag=capstone .
+            docker images
+    - run:
+        name: push a docker image
+        command: |
+            docker login -p $PASSWD -u $USERNAME
+            docker tag capstone $USERNAME/capstone
+            docker push $USERNAME/capstone
+            
+  run_container:
+    docker:
+        - image: python:3.7.3-stretch
+    
+    steps:
+    - checkout
+    - run:
+        name: run docker container
+        command: |
+            docker login -p $PASSWD -u $USERNAME
+            docker pull $USERNAME/capstone
+            docker run -itd -p 8000:80 $USERNAME/capstone
+            curl localhost:8000
+  
+  
