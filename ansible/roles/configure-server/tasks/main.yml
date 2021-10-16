@@ -19,4 +19,13 @@
       ls
       chmod +x install_docker.sh
       ./install_docker.sh
-      
+  
+- name: login
+  become: true
+  shell: |
+    docker login -u {{ USERNAME }} -p {{ PASSWD }}
+
+
+  environment:
+    PASSWD: "{{ lookup('env','PASSWD') }}"
+    USERNAME: "{{ lookup('env','USERNAME') }}"
