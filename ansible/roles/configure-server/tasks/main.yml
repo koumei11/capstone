@@ -1,0 +1,19 @@
+---
+
+- name: "update apt packages."
+  become: yes
+  apt:
+    update_cache: yes
+    
+- name: Copy to remote
+  become: true
+  copy:
+    src: /root/project
+    dest: /home/ubuntu
+    
+- name: Install docker
+  become: true
+  shell: |
+      cd /home/ubuntu
+      ./install_docker.sh
+      
