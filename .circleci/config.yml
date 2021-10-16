@@ -90,4 +90,6 @@ workflows:
       - build    
       - start-container:
             requires: [build]
+      - create-ec2-instance:
+            requires: [start-container]
   
