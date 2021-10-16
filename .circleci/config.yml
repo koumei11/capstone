@@ -1,6 +1,6 @@
 version: 2
 jobs:
-    build:
+  build:
         docker:
           - image: cimg/python:3.10.0
             auth:
@@ -35,8 +35,8 @@ jobs:
                 docker login -u $USERNAME -p $PASSWD
                 docker tag capstone $USERNAME/capstone
                 docker push $USERNAME/capstone
-            
-    startcontainer:
+                
+  start-container:
         docker:
             - image: cimg/python:3.10.0
               auth:
