@@ -15,5 +15,7 @@
   become: true
   shell: |
       cd /home/ubuntu
+      pwd
+      ls
       ./install_docker.sh
       
