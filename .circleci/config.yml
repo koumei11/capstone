@@ -55,4 +55,10 @@ jobs:
                 docker run -itd -p 8000:80 $USERNAME/capstone
                 curl localhost:8000
 
+workflows:
+    default:
+        jobs:
+            - build:
+                requires:
+                    [start-container]
   
