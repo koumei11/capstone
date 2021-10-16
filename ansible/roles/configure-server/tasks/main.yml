@@ -15,12 +15,37 @@
   become: true
   shell: |
       cd /home/ubuntu/conf
-      pwd
-      ls
       chmod +x install_docker.sh
       ./install_docker.sh
   
-- name: login
+- name: docker login
   become: true
   shell: |
     docker login -u {{ USERNAME }} -p {{ PASSWD }}
+
+- name: install minikube
+  become: true
+  shell: |
+    cd /home/ubuntu/conf
+    chmod +x install_minikube.sh
+    ./install_minikube.sh
+    
+- name: install kubectl
+  become: true
+  shell: |
+    cd /home/ubuntu/conf
+    chmod +x install_kubectl.sh
+    ./install_kubectl.sh
+    
+- name: create cluster
+  become: true
+  shell: |
+    docker login -u {{ USERNAME }} -p {{ PASSWD }}
+    minikube start
+    
+- name: deploy pod
+  become: true
+  shell: |
+    docker login -u {{ USERNAME }} -p {{ PASSWD }}
+    chmod +x run_kubernetes.sh
+    ./run_kubernetes.sh
