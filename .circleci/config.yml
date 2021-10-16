@@ -29,13 +29,12 @@ jobs:
         command: |
             docker build --tag=capstone .
             docker images
-            echo $USERNAME
-            echo $PASSWD
     - run:
         name: push a docker image
         command: |
-            docker tag capstone miketyson40166/capstone
-            docker push miketyson40166/capstone
+            docker login -u $USERNAME -p $PASSWD
+            docker tag capstone $USERNAME/capstone
+            docker push $USERNAME/capstone
             
   run_container:
     docker:
