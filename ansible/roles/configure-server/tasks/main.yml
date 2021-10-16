@@ -24,8 +24,3 @@
   become: true
   shell: |
     docker login -u {{ USERNAME }} -p {{ PASSWD }}
-
-
-  environment:
-    PASSWD: "{{ lookup('env','PASSWD') }}"
-    USERNAME: "{{ lookup('env','USERNAME') }}"

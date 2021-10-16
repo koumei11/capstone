@@ -8,6 +8,10 @@
     - ansible_python_interpreter: /usr/bin/python3
     - ansible_host_key_checking: false
     - ansible_stdout_callback: yaml
+  
+  environment:
+    PASSWD: "{{ lookup('env','PASSWD') }}"
+    USERNAME: "{{ lookup('env','USERNAME') }}"
         
   roles:
     - configure-server
