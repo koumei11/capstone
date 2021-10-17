@@ -18,3 +18,7 @@ echo \
 apt-get update
 
 apt-get install docker-ce docker-ce-cli containerd.io -y
+
+chown "$USER":"$USER" /home/"$USER"/.docker -R
+
+chmod g+rwx "/home/$USER/.docker" -R
