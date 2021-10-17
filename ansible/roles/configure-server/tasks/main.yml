@@ -39,7 +39,7 @@
     
 - name: create cluster
   shell: |
-    docker login -u {{ USERNAME }} -p {{ PASSWD }}
+    sudo docker login -u {{ USERNAME }} -p {{ PASSWD }}
     sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
     sudo chmod g+rwx "/home/$USER/.docker" -R
     minikube start
