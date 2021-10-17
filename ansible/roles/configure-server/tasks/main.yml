@@ -38,11 +38,10 @@
     ./install_kubectl.sh
     
 - name: create docker user
-  become: true
   shell: |
-    docker login -u {{ USERNAME }} -p {{ PASSWD }}
-    gpasswd -a $USER docker
-    systemctl restart docker
+    sudo docker login -u {{ USERNAME }} -p {{ PASSWD }}
+    sudo gpasswd -a $USER docker
+    sudo systemctl restart docker
     
 - name: start a cluster
   shell: |
