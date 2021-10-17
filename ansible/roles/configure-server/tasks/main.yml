@@ -47,6 +47,7 @@
     
 - name: start a cluster
   shell: |
+    minikube delete
     minikube start
     
 - name: deploy pod
