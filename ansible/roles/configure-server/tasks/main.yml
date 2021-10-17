@@ -51,8 +51,7 @@
     minikube start
     
 - name: deploy pod
-  become: true
   shell: |
     cd /home/ubuntu/conf
-    chmod +x run_kubernetes.sh
+    sudo chmod +x run_kubernetes.sh
     ./run_kubernetes.sh
