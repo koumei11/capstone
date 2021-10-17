@@ -15,10 +15,8 @@ while :
 do
     kubectl get pods | grep Running
     if [ $? -eq 0 ]; then
-        break
+        exit 0
     fi
 done
-
-exit 0
 
 # kubectl get pods
