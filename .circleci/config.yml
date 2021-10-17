@@ -79,6 +79,16 @@ jobs:
       - checkout
       - aws-cli/setup
       - run:
+          name: get old workflow id
+          command: |
+            export OldWorkflowID=$(aws cloudformation \
+              list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
+              --no-paginate --output text)
+            curl -H "Content-Type: text/plain" \
+                 -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
+                 --request PUT \
+                 --data "$OldWorkflowID" https://api.memstash.io/values/workflow_id
+      - run:
           name: create ec2 instance from template
           command: |
             aws cloudformation deploy \
@@ -127,6 +137,20 @@ jobs:
             cat inventory.txt
           
       # - destroy-environment
+      
+  cleanup:
+    docker:
+      - image: python:3.7-alpine3.11
+    
+    steps:
+      - checkout
+      - aws-cli/setup
+      - run:
+          name: remove old server
+          command: |
+            export OldWorkflowID=$(curl -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
+                            --request GET https://api.memstash.io/values/workflow_id)
+            echo $OldWorkflowID
     
 
 workflows:

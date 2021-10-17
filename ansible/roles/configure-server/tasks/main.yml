@@ -37,11 +37,15 @@
     chmod +x install_kubectl.sh
     ./install_kubectl.sh
     
-- name: create cluster
+- name: create docker user
+  become: true
   shell: |
-    sudo docker login -u {{ USERNAME }} -p {{ PASSWD }}
-    sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-    sudo chmod g+rwx "/home/$USER/.docker" -R
+    docker login -u {{ USERNAME }} -p {{ PASSWD }}
+    gpasswd -a $USER docker
+    systemctl restart docker
+    
+- name: start a cluster
+  shell: |
     minikube start
     
 - name: deploy pod
