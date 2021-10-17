@@ -11,14 +11,15 @@ kubectl run udacitycapstone\
 kubectl get pods
 
 # Forward the container port to host
-kube_status=1
-echo "waiting...."
-while [ $kube_status -ne 0 ]
+while :
 do
-        kubectl get pods | grep Running
-        kube_status=`echo $?`
+    kubectl get pods | grep Running
+    if [ $? -eq 0 ]; then
+        break
+    fi
 done
 
 kubectl port-forward udacitycapstone 8000:80 --address='0.0.0.0'
+exit 0
 
 # kubectl get pods

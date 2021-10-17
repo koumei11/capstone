@@ -124,7 +124,7 @@ jobs:
             cat ./inventory.txt
       - run:
           name: configure server
-          no_output_timeout: 50m
+          no_output_timeout: 20m
           command: |
           
             echo USERNAME=$USERNAME
