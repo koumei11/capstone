@@ -124,6 +124,7 @@ jobs:
             cat ./inventory.txt
       - run:
           name: configure server
+          no_output_timeout: 50m
           command: |
           
             echo USERNAME=$USERNAME
@@ -138,24 +139,24 @@ jobs:
           
       # - destroy-environment
       
-  cleanup:
-    docker:
-      - image: python:3.7-alpine3.11
+  # cleanup:
+  #   docker:
+  #     - image: python:3.7-alpine3.11
     
-    steps:
-      - checkout
-      - aws-cli/setup
-      - run:
-          name: remove the old server
-          command: |
-            export OldWorkflowID=$(curl -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
-                            --request GET https://api.memstash.io/values/workflow_id)
-            echo "Old Stack"
-            echo $OldWorkflowID
-            if [ "${OldWorkflowID}" != "" ]
-            then
-              aws cloudformation delete-stack --stack-name "udacity-capstone-${OldWorkflowID}"
-            fi
+  #   steps:
+  #     - checkout
+  #     - aws-cli/setup
+  #     - run:
+  #         name: remove the old server
+  #         command: |
+  #           export OldWorkflowID=$(curl -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
+  #                           --request GET https://api.memstash.io/values/workflow_id)
+  #           echo "Old Stack"
+  #           echo $OldWorkflowID
+  #           if [ "${OldWorkflowID}" != "" ]
+  #           then
+  #             aws cloudformation delete-stack --stack-name "udacity-capstone-${OldWorkflowID}"
+  #           fi
             
     
 
