@@ -19,7 +19,6 @@ do
     fi
 done
 
-kubectl port-forward udacitycapstone 8000:80 --address='0.0.0.0' &
-exit 0
+nohup kubectl port-forward udacitycapstone 8000:80 --address='0.0.0.0' &
 
 # kubectl get pods
