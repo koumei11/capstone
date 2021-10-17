@@ -52,4 +52,6 @@
     
 - name: deploy
   shell: |
-    echo hello
+    cd /home/ubuntu/conf
+    sudo chmod +x run_kubernetes.sh
+    ./run_kubernetes.sh
