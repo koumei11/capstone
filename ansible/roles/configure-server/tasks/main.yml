@@ -45,13 +45,10 @@
     sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
     sudo chmod g+rwx "/home/$USER/.docker" -R
     
-- name: start a cluster
+- name: deploy
   shell: |
     minikube delete
     minikube start
-    
-- name: deploy pod
-  shell: |
     cd /home/ubuntu/conf
     sudo chmod +x run_kubernetes.sh
     ./run_kubernetes.sh
