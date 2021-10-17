@@ -150,6 +150,7 @@ jobs:
           command: |
             export OldWorkflowID=$(curl -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
                             --request GET https://api.memstash.io/values/workflow_id)
+            echo "Old Stack"
             echo $OldWorkflowID
     
 

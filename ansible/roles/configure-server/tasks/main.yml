@@ -42,6 +42,8 @@
     sudo docker login -u {{ USERNAME }} -p {{ PASSWD }}
     sudo gpasswd -a $USER docker
     sudo systemctl restart docker
+    sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+    sudo chmod g+rwx "/home/$USER/.docker" -R
     
 - name: start a cluster
   shell: |
