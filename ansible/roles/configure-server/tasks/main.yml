@@ -52,6 +52,8 @@
     
 - name: deploy
   shell: |
+    docker login -u {{ USERNAME }} -p {{ PASSWD }}
+    
     dockerpath="miketyson40166/capstone"
 
     # Run in Docker Hub container with kubernetes
