@@ -18,7 +18,3 @@ echo \
 apt-get update
 
 apt-get install docker-ce docker-ce-cli containerd.io -y
-
-chown ubuntu:ubuntu /home/ubuntu/.docker -R
-
-chmod g+rwx "/home/ubuntu/.docker" -R

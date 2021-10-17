@@ -126,7 +126,7 @@ jobs:
             ansible-playbook -i inventory.txt ./ansible/configure-server.yml
             cat inventory.txt
           
-      # - destroy-environment
+      - destroy-environment
     
 
 workflows:
