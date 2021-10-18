@@ -11,12 +11,12 @@ kubectl run udacitycapstone\
 kubectl get pods
 
 # Forward the container port to host
-while :
-do
-    kubectl get pods | grep Running
-    if [ $? -eq 0 ]; then
-        exit 0
-    fi
-done
+# while :
+# do
+#     kubectl get pods | grep Running
+#     if [ $? -eq 0 ]; then
+#         exit 0
+#     fi
+# done
 
 # kubectl get pods

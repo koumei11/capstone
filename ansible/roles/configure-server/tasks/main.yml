@@ -55,4 +55,7 @@
     cd /home/ubuntu/conf
     sudo chmod +x run_kubernetes.sh
     ./run_kubernetes.sh
-    nohup kubectl port-forward udacitycapstone 8000:80 --address='0.0.0.0' &
+    
+- name: binding port
+  shell: |
+    kubectl port-forward udacitycapstone 8000:80 --address='0.0.0.0'
