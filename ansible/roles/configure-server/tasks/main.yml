@@ -50,10 +50,14 @@
     minikube delete
     minikube start
     
-- name: deploy
+- name: docker login
   shell: |
     docker login -u {{ USERNAME }} -p {{ PASSWD }}
-    kubectl run udacitycapstone --image="miketyson40166/capstone" --serviceaccount=default --port=80 --labels app=udacitycapstone
+
+- name: deploy
+  shell: |
+    kubectl run udacitycapstone --generator=run-pod/v1 --image="miketyson40166/capstone" --port=80 --labels app=udacitycapstone
+    
     
 # - name: pending
 #   become: true
