@@ -61,7 +61,7 @@
 #     chmod +x ./run_kubernetes.sh
 #     ./run_kubernetes.sh
 
-- name: pending
+-
   util: pod_state.stdout != 0
   shell:
     kubectl get pods | grep Running
