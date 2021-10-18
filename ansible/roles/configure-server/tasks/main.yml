@@ -77,4 +77,4 @@
     
 - name: binding port
   shell: |
-    kubectl port-forward udacitycapstone 8000:80
+    kubectl port-forward udacitycapstone 8000:80 &
