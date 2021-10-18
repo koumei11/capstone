@@ -65,8 +65,9 @@
 - name: Pending
   until: pod_state.stdout|int != 0
   shell: |
-    kubectl get pods | grep Running
-    pod_state=`echo $?`
+    kubectl get pods | grep Running > status_file.txt
+    cat status_file.txt | grep Running > /dev/null
+    echo $?
   register: pod_state
   retries: 10
   delay: 10
