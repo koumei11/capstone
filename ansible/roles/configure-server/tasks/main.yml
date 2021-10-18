@@ -67,7 +67,7 @@
 #     ./run_kubernetes.sh
 
 - name: Pending
-  until: pod_state.stdout|int != 0
+  until: pod_state.stdout|int == 0
   shell: |
     kubectl get pods | grep Running > /dev/null
     echo $?
