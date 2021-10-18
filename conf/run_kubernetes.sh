@@ -4,7 +4,7 @@ dockerpath="miketyson40166/capstone"
 
 # Run in Docker Hub container with kubernetes
 kubectl run udacitycapstone\
-    --image=$dockerpath\
+    --image="miketyson40166/capstone"\
     --port=80 --labels app=udacitycapstone
 
 # List kubernetes pods

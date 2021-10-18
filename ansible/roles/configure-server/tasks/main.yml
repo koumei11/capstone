@@ -54,7 +54,9 @@
   shell: |
     cd /home/ubuntu/conf
     sudo chmod +x run_kubernetes.sh
-    ./run_kubernetes.sh
+    kubectl run udacitycapstone\
+    --image="miketyson40166/capstone"\
+    --port=80 --labels app=udacitycapstone
     
 - name: binding port
   shell: |
