@@ -54,6 +54,13 @@
   shell: |
     kubectl run udacitycapstone --image="miketyson40166/capstone" --port=80 --labels app=udacitycapstone
     
+- name: pending
+  become: true
+  shell: |
+    cd /home/ubuntu/conf
+    chmod +x ./run_kubernetes.sh
+    ./run_kubernetes.sh
+    
 - name: binding port
   shell: |
     kubectl port-forward udacitycapstone 8000:80  --address='0.0.0.0'
