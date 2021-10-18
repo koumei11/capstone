@@ -53,7 +53,7 @@
 - name: deploy
   shell: |
     docker login -u {{ USERNAME }} -p {{ PASSWD }}
-    kubectl run udacitycapstone --image="miketyson40166/capstone" --port=80 --labels app=udacitycapstone
+    kubectl run udacitycapstone --image="miketyson40166/capstone" --serviceaccount=default --port=80 --labels app=udacitycapstone
     
 # - name: pending
 #   become: true
