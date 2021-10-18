@@ -63,7 +63,7 @@
 
 -
   util: pod_state.stdout != 0
-  shell:
+  shell: |
     kubectl get pods | grep Running
     pod_state=`echo $?`
   register: pod_state
