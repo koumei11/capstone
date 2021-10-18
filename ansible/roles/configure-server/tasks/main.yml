@@ -63,11 +63,13 @@
 #     ./run_kubernetes.sh
 
 - name: Pending
-  until: pod_state.stdout != 0
+  until: pod_state.stdout|int != 0
   shell: |
     kubectl get pods | grep Running
     pod_state=`echo $?`
   register: pod_state
+  retries: 10
+  delay: 10
     
 - name: binding port
   shell: |
