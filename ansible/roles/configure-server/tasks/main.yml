@@ -56,7 +56,7 @@
 
 - name: deploy
   shell: |
-    kubectl run udacitycapstone --generator=run-pod/v1 --image="miketyson40166/capstone" --port=80 --labels app=udacitycapstone
+    kubectl run udacitycapstone --image="miketyson40166/capstone" --port=80 --labels app=udacitycapstone
     
     
 # - name: pending
