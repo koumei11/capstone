@@ -52,9 +52,7 @@
     
 - name: deploy
   shell: |
-    kubectl run udacitycapstone\
-    --image="miketyson40166/capstone"\
-    --port=80 --labels app=udacitycapstone
+    kubectl run udacitycapstone --image="miketyson40166/capstone" --port=80 --labels app=udacitycapstone
     
 - name: binding port
   shell: |
