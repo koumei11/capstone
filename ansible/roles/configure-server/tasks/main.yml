@@ -52,10 +52,8 @@
     
 - name: deploy
   shell: |
-    docker login -u {{ USERNAME }} -p {{ PASSWD }}
     kubectl run udacitycapstone --image="miketyson40166/capstone" --port=80 --labels app=udacitycapstone
     
 - name: binding port
   shell: |
-    docker login -u {{ USERNAME }} -p {{ PASSWD }}
-    kubectl port-forward udacitycapstone 8000:80 --address='0.0.0.0'
+    kubectl port-forward udacitycapstone 8000:80
