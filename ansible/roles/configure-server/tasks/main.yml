@@ -76,7 +76,7 @@
   delay: 10
     
 - name: binding port
-  become: true
   shell: |
+    echo 5 > test.txt
     nohup kubectl port-forward --address 0.0.0.0 udacitycapstone 8000:80 &
     ls
