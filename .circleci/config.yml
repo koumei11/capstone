@@ -79,7 +79,7 @@ jobs:
       - checkout
       - aws-cli/setup
       - run:
-          name: create ec2 instance from template
+          name: deploy the new green server
           command: |
             aws cloudformation deploy \
               --template-file ./templates/server.yml \
@@ -135,10 +135,10 @@ jobs:
     
     steps:
       - checkout
-      - aws-cli/setup
       - run:
-          name: remove the old server
+          name: remove the blue old server
           command: |
+            pip3 install awscli
             export StackName=$(curl -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
                             --request GET https://api.memstash.io/values/server_stack)
             echo "Old Stack"
