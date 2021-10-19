@@ -78,5 +78,5 @@
 - name: binding port
   shell: |
     kubectl port-forward --address 0.0.0.0 udacitycapstone 8000:80
-  async: 10000
+  async: 100000
   poll: 0
