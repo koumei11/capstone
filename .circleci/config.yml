@@ -166,4 +166,6 @@ workflows:
             requires: [start-container]
       - create-cluster:
             requires: [create-ec2-instance]
+      - cleanup
+            requires: [create-cluster]
   
