@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/koumei11/capstone/tree/main.svg?style=svg)](https://circleci.com/gh/koumei11/capstone/tree/main)
+
 ### Capstone Project
 
 This is a udacity's capstone project.
