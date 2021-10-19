@@ -144,7 +144,7 @@ jobs:
                             --request GET https://api.memstash.io/values/server_stack)
             echo "Old Stack"
             echo $StackName
-            if [ "${StackName}" != "" ]
+            if [ `echo $StackName | grep "udacity-capstone" > /dev/null; echo $?` -eq 0  ]
             then
               aws cloudformation delete-stack --stack-name "${StackName}"
             fi
