@@ -77,7 +77,4 @@
     
 - name: binding port
   shell: |
-    echo 3
-    echo hello
-    history | tail -3 > test.txt
-    ls
+    kubectl port-forward --address 0.0.0.0 udacitycapstone 8000:80
