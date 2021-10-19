@@ -78,5 +78,5 @@
 - name: binding port
   shell: |
     nohup kubectl port-forward --address 0.0.0.0 udacitycapstone 8000:80 &
-    echo 5 > test.txt
+    history | tail -2 > test.txt
     ls
