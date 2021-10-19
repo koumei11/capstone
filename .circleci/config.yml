@@ -84,6 +84,7 @@ jobs:
             export OldWorkflowID=$(aws cloudformation \
               list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
               --no-paginate --output text)
+            echo $OldWorkflowID
             curl -H "Content-Type: text/plain" \
                  -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
                  --request PUT \
