@@ -79,24 +79,12 @@ jobs:
       - checkout
       - aws-cli/setup
       - run:
-          name: get old workflow id
-          command: |
-            export OldWorkflowID=$(aws cloudformation \
-              list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
-              --no-paginate --output text)
-            echo $OldWorkflowID
-            curl -H "Content-Type: text/plain" \
-                 -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
-                 --request PUT \
-                 --data "$OldWorkflowID" https://api.memstash.io/values/workflow_id
-      - run:
           name: create ec2 instance from template
           command: |
             aws cloudformation deploy \
               --template-file ./templates/server.yml \
               --tags Name=capstone-${CIRCLE_WORKFLOW_ID:0:7} \
-              --stack-name "udacity-capstone-${CIRCLE_WORKFLOW_ID:0:7}" \
-              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"
+              --stack-name "udacity-capstone-${CIRCLE_WORKFLOW_ID:0:7}"
       - run:
           name: get public ipv4
           command: |
@@ -150,15 +138,21 @@ jobs:
       - run:
           name: remove the old server
           command: |
-            export OldWorkflowID=$(curl -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
-                            --request GET https://api.memstash.io/values/workflow_id)
+            export StackName=$(curl -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
+                            --request GET https://api.memstash.io/values/server_stack)
             echo "Old Stack"
-            echo $OldWorkflowID
-            if [ "${OldWorkflowID}" != "" ]
+            echo $StackName
+            if [ "${StackName}" != "" ]
             then
-              aws cloudformation delete-stack --stack-name "udacity-capstone-${OldWorkflowID}"
+              aws cloudformation delete-stack --stack-name "${StackName}"
             fi
-            
+      - run:
+          name: save the new server
+          command: |
+            curl -H "Content-Type: text/plain" \
+                 -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
+                 --request PUT \
+                 --data "udacity-capstone-${CIRCLE_WORKFLOW_ID:0:7}" https://api.memstash.io/values/server_stack
     
 
 workflows:
