@@ -155,7 +155,6 @@ jobs:
                  -H "token: 6d0413bb-4720-47f5-a60f-6374b0870d3b" \
                  --request PUT \
                  --data "udacity-capstone-${CIRCLE_WORKFLOW_ID:0:7}" https://api.memstash.io/values/server_stack
-    
 
 workflows:
   default:
