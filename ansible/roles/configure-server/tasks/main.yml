@@ -77,4 +77,4 @@
     
 - name: binding port
   shell: |
-    nohup kubectl port-forward udacitycapstone 8000:80 --address='0.0.0.0' &
+    nohup kubectl port-forward --address 0.0.0.0 udacitycapstone 8000:80 &
